@@ -1,8 +1,8 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
-import App from "./App";
+import { Login } from "./pages/Login";
 
 export const routes = createBrowserRouter(createRoutesFromElements(
     <Route>
-        <Route index element={<App />} />
+        <Route path="login" index element={<Login />} />
     </Route>
 ));

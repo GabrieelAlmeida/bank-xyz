@@ -1,7 +1,9 @@
+import { RouterProvider } from 'react-router-dom'
+import { routes } from './routes.tsx'
 
 function App() {
   return (
-    <h1 className="underline">Bank XYZ App!</h1>
+    <RouterProvider router={routes} />
   )
 }
 
