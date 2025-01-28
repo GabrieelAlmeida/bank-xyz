@@ -3,14 +3,20 @@ import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
 import { Dashboard } from "./pages/Dashboard";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { AuthLayout } from "./pages/Layouts/Auth";
 
 export const routes = createBrowserRouter(createRoutesFromElements(
-    <Route errorElement={<NotFound />}>
-        <Route path="login" index element={<Login />} />
-        <Route path="dashboard" element={
-            <ProtectedRoute>
-                <Dashboard />
-            </ProtectedRoute>
-        } />
-    </Route>
+    <>
+        <Route path="/" element={<AuthLayout />} errorElement={<NotFound />}>
+            <Route path="login" index element={<Login />} />
+        </Route>
+
+        <Route>
+            <Route path="dashboard" element={
+                <ProtectedRoute>
+                    <Dashboard />
+                </ProtectedRoute>
+            } />
+        </Route>
+    </>
 ));
