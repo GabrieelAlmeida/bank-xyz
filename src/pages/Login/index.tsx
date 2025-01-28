@@ -1,5 +1,3 @@
-import { DollarSign } from "lucide-react";
-import financialBackgroundLogo from "../../assets/financial-login.svg";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginUserFormSchema } from "./validationSchema/loginUserFormSchema";
@@ -7,6 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { loginUserFormData } from "../../interfaces/user.interface";
 import { useEffect } from "react";
+import { Logo } from "../../components/Logo";
 
 export function Login() {
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<loginUserFormData>({
@@ -33,13 +32,7 @@ export function Login() {
     return(
         <main className="h-full w-full">
             <div className="flex justify-between text-brand-font-dark-100">
-                <div className="w-[50vw] h-screen bg-brand-dark-background-200  p-6 flex flex-col gap-10">
-                    <div className="flex text-brand-purple-100 font-semibold">
-                        <DollarSign />
-                        <h1> Bank XYZ</h1>
-                    </div>
-                    <img src={financialBackgroundLogo} className="justify-center "alt="Bank XYZ financial background Logo"/>
-                </div>
+                <Logo />
 
                 <div className="flex flex-col justify-center items-center space-y-8 w-[50vw] h-screen bg-brand-dark-background-500">
                     <div className="flex flex-col gap-2 text-center">
