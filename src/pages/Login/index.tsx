@@ -6,6 +6,7 @@ import { loginUserFormSchema } from "./validationSchema/loginUserFormSchema";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { loginUserFormData } from "../../interfaces/user.interface";
+import { useEffect } from "react";
 
 export function Login() {
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<loginUserFormData>({
@@ -13,7 +14,11 @@ export function Login() {
     });
 
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { login, isAuthenticated } = useAuth();
+
+    useEffect(() => {
+        if(isAuthenticated) navigate("/dashboard");
+    }, []);
 
     async function handleLogin(user: loginUserFormData) {
         try {

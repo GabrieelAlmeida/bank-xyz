@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: any) => {
         removeCookie("user");
     }, []);
 
-    const authContextProviderValue = { user, authToken, isAuthenticated: !!authToken ,login, logout }
+    const authContextProviderValue = { user, authToken, isAuthenticated: !!cookies?.user ,login, logout }
 
     return (
         <AuthContext.Provider value={authContextProviderValue}>

@@ -9,9 +9,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/loginApi': {
-        target: config?.VITE_BASE_URL_LOGIN,
+        target: 'https://qf5k9fspl0.execute-api.us-east-1.amazonaws.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/loginApi/, '')
       }
     }
   }

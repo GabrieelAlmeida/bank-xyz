@@ -5,11 +5,11 @@ import { CookiesProvider } from 'react-cookie'
 
 function App() {
   return (
-    <CookiesProvider>
-      <AuthProvider>
-        <RouterProvider router={routes} />
-      </AuthProvider>
-    </CookiesProvider>
+      <CookiesProvider>
+        <AuthProvider>
+          <RouterProvider router={routes} />
+        </AuthProvider>
+      </CookiesProvider>
   )
 }
 
