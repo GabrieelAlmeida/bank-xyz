@@ -3,12 +3,27 @@ import financialBackgroundLogo from "../../assets/financial-login.svg";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginUserFormSchema } from "./validationSchema/loginUserFormSchema";
-import { loginUserFormData } from "./interfaces/login.interface";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { loginUserFormData } from "../../interfaces/user.interface";
 
 export function Login() {
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<loginUserFormData>({
         resolver: zodResolver(loginUserFormSchema)
     });
+
+    const navigate = useNavigate();
+    const { login } = useAuth();
+
+    async function handleLogin(user: loginUserFormData) {
+        try {
+            await login(user);
+            navigate('/dashboard');
+            
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return(
         <main className="h-full w-full">
@@ -31,7 +46,7 @@ export function Login() {
                         </p>
                     </div>
 
-                    <form className="space-y-6 flex flex-col items-center justify-center w-80" onSubmit={handleSubmit(() => {})}>
+                    <form className="space-y-6 flex flex-col items-center justify-center w-80" onSubmit={handleSubmit(handleLogin)}>
                         <div className="space-y-2 flex flex-col w-full">
                             <label htmlFor="email">E-mail</label>
                             <input 
