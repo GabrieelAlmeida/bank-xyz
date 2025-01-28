@@ -1,7 +1,8 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useLayoutEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import authService from "../services/auth.service";
 import { loginUserFormData, User, UserLoginResponse } from "../interfaces/user.interface";
+import axios from "axios";
 
 interface AuthContextProps {
     user: User | null,
@@ -17,6 +18,21 @@ export const AuthProvider = ({ children }: any) => {
     const [user, setUser] = useState<User | null>(null);
     const [authToken, setAuthToken] = useState<string | null>(null);
     const [cookies, setCookie, removeCookie] = useCookies();
+
+    useLayoutEffect(() => {
+        const authRequestInterceptor = axios.interceptors.request.use((config: any) => {
+            config.headers.Authorization =
+                !config?._retry && cookies.authToken
+                ?  `Bearer ${cookies.authToken}`
+                : config.headers.Authorization;
+
+            return config;
+        });
+
+        return () => {
+            axios.interceptors.request.eject(authRequestInterceptor);
+        }
+    }, [authToken]);
 
     const login = useCallback(async (user: loginUserFormData) => {
         try {
