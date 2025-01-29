@@ -4,7 +4,7 @@ import { LinkAsideMenuProps, linksAsideMenu } from "./links";
 
 export function AsideMenu() {
     return(
-        <aside className="bg-brand-dark-background-500 w-64 pl-6">
+        <aside className="bg-brand-dark-background-500 w-64 pl-6 fixed  z-20 h-screen">
             <div className="py-5 mr-14 border-b-2 border-b-brand-dark-background-100">
                 <Logo />
             </div>

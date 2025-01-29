@@ -11,12 +11,12 @@ export const linksAsideMenu: LinkAsideMenuProps[] = [
     },
 
     {
-        name: "Transactions",
-        path: "/transactions"
+        name: "Transfers",
+        path: "/transfers"
     },
 
     {
-        name: "New transaction",
-        path: "/new-transaction"
+        name: "New transfer",
+        path: "/new-transfer"
     }
 ];
