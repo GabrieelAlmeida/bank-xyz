@@ -22,8 +22,8 @@ export const AuthProvider = ({ children }: any) => {
     useLayoutEffect(() => {
         const authRequestInterceptor = axios.interceptors.request.use((config: any) => {
             config.headers.Authorization =
-                !config?._retry && cookies.authToken
-                ?  `Bearer ${cookies.authToken}`
+                !config?._retry && cookies?.user?.token
+                ?  `Bearer ${cookies?.user?.token}`
                 : config.headers.Authorization;
 
             return config;
