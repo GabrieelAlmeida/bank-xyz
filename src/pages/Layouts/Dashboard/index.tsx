@@ -9,7 +9,9 @@ export function DashboardLayout() {
 
             <div className="flex flex-col w-screen">
                 <Header />
-                <Outlet />
+                <div className="pt-24 pl-72">
+                    <Outlet />
+                </div>
             </div>
         </div>
     );

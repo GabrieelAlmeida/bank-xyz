@@ -11,7 +11,7 @@ export function Dashboard() {
     const { transferList } = useFetchTransferList();
 
     return(
-        <div className="flex flex-col gap-8 p-8 pl-72 pt-24">
+        <div className="flex flex-col gap-8 p-8">
             <h2 className="font-bold text-xl">Hi, {cookies?.user?.user?.name}</h2>
 
             <div className="flex gap-6">
