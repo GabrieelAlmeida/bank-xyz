@@ -1,30 +1,24 @@
-import { useEffect, useState } from "react";
 import { TransferListResponse } from "../interfaces/account.interface";
 import accountService from "../services/account.service";
-import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
 
 function useFetchTransferList() {
-    const [transferList, setTransferList] = useState<TransferListResponse | null>();
+  async function handleGetTransferList() {
+    const transferListResponse: TransferListResponse =
+      await accountService.account.getTransferList();
 
-    async function handleGetTransferList() {
-        try {
-            const transferListResponse: TransferListResponse = await accountService.account.getTransferList();
-            if(transferListResponse) {
-                setTransferList(transferListResponse);
-            }
-            
-        } catch (error) {
-            toast.error("Error when fetching transfer list");
-        }
-    }
+    return transferListResponse;
+  }
 
-    useEffect(()=> {
-        handleGetTransferList();
-    }, []);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["transferList"],
+    queryFn: handleGetTransferList,
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+  });
 
-
-    return { transferList };
-    
+  return { isLoading, data, error };
 }
 
 export default useFetchTransferList;
