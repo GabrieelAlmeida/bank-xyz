@@ -18,3 +18,10 @@ export interface TransferListResponse {
     message: string;
     transfers: Transfer[]
 }
+
+export interface TransferPayload {
+    value: string | number;
+    currency: string;
+    payeerDocument: string;
+    transferDate: string;
+}

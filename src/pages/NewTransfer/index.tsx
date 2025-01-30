@@ -4,13 +4,17 @@ import { useLayoutEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { handleCurrencyChange } from "../../utils/account.util";
+import {
+  handleCurrencyChange,
+  handleCurrencyToInteger,
+} from "../../utils/account.util";
+import accountService from "../../services/account.service";
+import { TransferPayload } from "../../interfaces/account.interface";
 
 export function NewTransfer() {
   const {
     register,
     handleSubmit,
-    reset,
     setValue,
     getValues,
     formState: { isSubmitting },
@@ -19,16 +23,27 @@ export function NewTransfer() {
   const queryClient = useQueryClient();
 
   useLayoutEffect(() => {
-    setValue("date", new Date().toISOString().split("T")[0]);
+    setValue("transferDate", new Date().toISOString().split("T")[0]);
   }, []);
 
-  const handleNewTransfer = (transfer) => {
-    toast.success("Transfer was send!");
-    queryClient.clear();
+  const handleNewTransfer = async (transfer: TransferPayload) => {
+    try {
+      if (transfer) {
+        transfer.value = handleCurrencyToInteger(transfer.value as string);
+        const newTransferResponse =
+          await accountService?.account?.sendNewTransfer(transfer);
 
-    setTimeout(() => {
-      navigate("/transfers");
-    }, 1000);
+        toast.success("Transfer was send!");
+        queryClient.clear();
+
+        setTimeout(() => {
+          navigate("/transfers");
+        }, 1000);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error when transfer!");
+    }
   };
 
   return (
@@ -48,7 +63,7 @@ export function NewTransfer() {
               title="Type a recipient name"
               className="border-brand-dark-background-100 bg-brand-dark-background-500 focus:border-brand-purple-300 h-12 w-full rounded border-2 px-4 py-4 focus:outline-none"
               autoComplete="off"
-              {...register("payeer")}
+              {...register("payeerDocument")}
             />
           </div>
         </div>
@@ -62,7 +77,6 @@ export function NewTransfer() {
               {...register("currency")}
               autoComplete="off"
               defaultValue="USD"
-              // onChange={(e) => setValue("value", handleCurrencyChange(e))}
             >
               <option className="h-16">USD</option>
             </select>
@@ -91,10 +105,10 @@ export function NewTransfer() {
             <input
               id="date"
               type="date"
-              value={getValues("date")}
+              value={getValues("transferDate")}
               placeholder="Search by date"
               className="border-brand-dark-background-100 bg-brand-dark-background-500 focus:border-brand-purple-300 h-12 w-full rounded border-2 px-4 py-4 focus:outline-none"
-              {...register("date")}
+              {...register("transferDate")}
             />
           </div>
         </div>

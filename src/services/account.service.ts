@@ -1,5 +1,5 @@
 import axios from "axios"
-import { BalanceResponse, TransferListResponse } from "../interfaces/account.interface";
+import { BalanceResponse, TransferListResponse, TransferPayload } from "../interfaces/account.interface";
 
 export default {
     account: {
@@ -9,6 +9,10 @@ export default {
 
         async getTransferList(): Promise<TransferListResponse> {
             return (await axios.get("/transferListApi/default/transferList")).data;
+        },
+
+        async sendNewTransfer(transfer: TransferPayload): Promise<unknown> {
+            return await axios.post("/newTransferApi/default/transfer", transfer);
         }
     },
 }

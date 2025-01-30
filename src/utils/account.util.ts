@@ -62,3 +62,9 @@ export const handleCurrencyChange = (e: ChangeEvent<HTMLInputElement>) => {
 
     return formatted;
 };
+
+export const handleCurrencyToInteger = (currency: string): number => {
+    let numericValue = currency.replace(/[$,]/g, '').replace('.', '');
+
+    return parseInt(numericValue, 10);
+};
