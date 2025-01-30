@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { Transfer, TransferListResponse } from "../interfaces/account.interface";
 
 export function formatCurrency(balance: any, currency: any) {
@@ -49,3 +50,15 @@ export function getAverageTransfers(transfers: Transfer[]) {
 
     return 0;
 }
+
+export const handleCurrencyChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let inputValue = e.target.value;
+    inputValue = inputValue.replace(/\D/g, "");
+
+    const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    }).format(Number(inputValue) / 100);
+
+    return formatted;
+};
