@@ -10,6 +10,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AuthLayout } from "./pages/Layouts/Auth";
 import { DashboardLayout } from "./pages/Layouts/Dashboard";
 import { Transfers } from "./pages/Transfers";
+import { NewTransfer } from "./pages/NewTransfer";
 
 export const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,15 @@ export const routes = createBrowserRouter(
           element={
             <ProtectedRoute>
               <Transfers />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="new-transfer"
+          element={
+            <ProtectedRoute>
+              <NewTransfer />
             </ProtectedRoute>
           }
         />
