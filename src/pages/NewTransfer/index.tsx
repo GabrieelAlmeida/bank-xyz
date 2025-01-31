@@ -52,7 +52,7 @@ export function NewTransfer() {
 
       <form
         className="flex flex-col gap-8"
-        onSubmit={handleSubmit(handleNewTransfer)}
+        onSubmit={handleSubmit(handleNewTransfer as any)}
       >
         <div className="container-input flex gap-4">
           <div className="flex w-102 flex-col">
