@@ -36,7 +36,7 @@ Projeto desenvolvido utilizando o React na sua forma mais pura, sem a utiliza√ß√
 <br>
 
 <div style="display: flex; justify-content:center; gap: 30px">
-  <img width="959" alt="image" src="https://github.com/user-attachments/assets/184ac36e-97d7-4052-99c4-59d313f3eb34" />
+  <img width="958" alt="image" src="https://github.com/user-attachments/assets/048bf0b6-e19f-4dc1-916d-e6452e82506d" />
 </div>
 <br>
 
