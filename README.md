@@ -85,6 +85,12 @@ Rodando o projeto
 npm run dev
 ```
 
+Executando os testes
+
+```bash
+npm run test
+```
+
 ## Autor
 
 - [Gabriel A. Bezerra ](https://github.com/GabrieelAlmeida//)
