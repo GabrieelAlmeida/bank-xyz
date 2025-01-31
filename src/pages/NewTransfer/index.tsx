@@ -86,7 +86,7 @@ export function NewTransfer() {
             <input
               id="currency-input"
               type="text"
-              placeholder="Search by USD value"
+              placeholder="USD value"
               title="Choose a transfer USD value"
               className="border-brand-dark-background-100 bg-brand-dark-background-500 focus:border-brand-purple-300 h-12 w-full max-w-72 rounded border-2 px-4 py-4 focus:outline-none"
               {...register("value")}
@@ -115,7 +115,7 @@ export function NewTransfer() {
 
         <div className="flex justify-center gap-4">
           <button
-            className="bg-brand-purple-300 hover:bg-brand-purple-200 flex h-11 w-72 items-center justify-center gap-2 rounded px-10 font-semibold hover:cursor-pointer"
+            className="bg-brand-purple-300 hover:bg-brand-purple-200 flex h-11 w-full items-center justify-center gap-2 rounded px-10 font-semibold hover:cursor-pointer"
             type="submit"
             disabled={isSubmitting}
           >

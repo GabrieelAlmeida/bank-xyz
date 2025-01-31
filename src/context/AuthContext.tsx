@@ -41,8 +41,6 @@ export const AuthProvider = ({ children }: any) => {
       },
     );
 
-    console.log(cookies?.user?.token);
-
     return () => {
       axios.interceptors.request.eject(authRequestInterceptor);
     };
