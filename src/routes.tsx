@@ -1,6 +1,7 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
 } from "react-router-dom";
 import { Login } from "./pages/Login";
@@ -16,7 +17,8 @@ export const routes = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<AuthLayout />} errorElement={<NotFound />}>
-        <Route path="login" index element={<Login />} />
+        <Route index element={<Navigate to="/login" />} />
+        <Route path="login" element={<Login />} />
       </Route>
 
       <Route path="/" element={<DashboardLayout />} errorElement={<NotFound />}>
